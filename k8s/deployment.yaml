@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  labels:
+    app: payment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+        version: $IMAGE_TAG
+    spec:
+      containers:
+      - name: payment
+        image: tipsukon25/payment:$IMAGE_TAG
+        ports:
+        - containerPort: 8083
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
