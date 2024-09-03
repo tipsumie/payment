@@ -19,7 +19,7 @@ spec:
       - name: payment
         image: tipsukon25/payment:$IMAGE_TAG
         ports:
-        - containerPort: 8083
+        - containerPort: 8084
         resources:
           requests:
             memory: "128Mi"
