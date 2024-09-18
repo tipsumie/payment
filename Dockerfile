@@ -1,10 +1,10 @@
 # Use an official OpenJDK runtime as a parent image
 FROM openjdk:23-rc-jdk-slim
 
-# Install curl and upgrade existing packages, including krb5-locales
-RUN apt-get update && apt-get install -y curl krb5-locales && \
+# Install curl and upgrade existing packages
+RUN apt-get update && apt-get install -y curl && \
     apt-get upgrade -y && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* \
 
 # Set the working directory inside the container
 WORKDIR /app
