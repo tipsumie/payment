@@ -1,0 +1,32 @@
+<configuration>
+    <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeCallerData>true</includeCallerData>
+            <customFields>{"app_name":"payment"}</customFields>
+            <fieldNames>
+                <timestamp>timestamp</timestamp>
+                <message>message</message>
+                <logger>logger_name</logger>
+                <thread>thread_name</thread>
+                <level>log_level</level>
+            </fieldNames>
+            <provider class="net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider">
+                <pattern>
+                    {
+                        <!-- "correlationId": "%mdc{correlationId}", -->
+                        <!-- "method": "%mdc{method}",
+                        "uri": "%mdc{uri}",
+                        "requestBody": "%mdc{requestBody}", -->
+                        <!-- "responseBody": "%mdc{responseBody}", -->
+                        <!-- "status": "#asLong{%mdc{status}}", -->
+                        <!-- "timeTaken": "#asLong{%mdc{timeTaken}}" -->
+                    }
+                </pattern>
+            </provider>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="jsonConsoleAppender"/>
+    </root>
+</configuration>
